@@ -2,9 +2,8 @@ import baseService from "./base.service";
 
 class MovieService {
   async add(movie) {
-    const response = await baseService.post("/movies", movie);
-    console.log(response);
-    return response;
+    console.log(movie);
+    return baseService.post("/movies", movie);
   }
 
   async getAll() {

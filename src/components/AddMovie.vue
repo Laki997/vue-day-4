@@ -27,7 +27,9 @@
       </div>
 
       <button type="submit" class="btn btn-primary">Login</button>
-      <h2>{{ error }}</h2>
+      <div v-for="error in errors" :key="error">
+        {{ error }}
+      </div>
     </form>
   </div>
 </template>
@@ -38,20 +40,23 @@ export default {
   data() {
     return {
       movie: {},
-      error: "",
+      errors: [],
     };
   },
 
   methods: {
-    async add() {
-      console.log(this.movie);
-      await movieService.add(this.movie).catch(
-        (error) => {
-          this.error = error;
-        }
-
-        // this.$router.push("/movies")
-      );
+    add() {
+      // console.log(this.movie);
+      movieService
+        .add(this.movie)
+        .then((response) => {
+          console.log(response);
+          console.log("test");
+          this.$router.push("/movies");
+        })
+        .catch((errors) => {
+          this.errors = errors.response.data.errors;
+        });
     },
   },
 };
