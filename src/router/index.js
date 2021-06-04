@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 
 import AddMovie from "../components/AddMovie";
 import Movies from "../components/Movies";
+import { globalAuthGuard } from "../guards/auth.guard";
 
 Vue.use(VueRouter);
 
@@ -14,13 +15,13 @@ const routes = [
   },
   {
     path: "/",
-
-    component: Movies,
+    component: AddMovie,
   },
   {
     path: "/movies",
     name: "movies",
     component: Movies,
+    meta: { authRequired: true },
   },
   {
     path: "/about",
@@ -38,5 +39,7 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+
+router.beforeEach(globalAuthGuard);
 
 export default router;
