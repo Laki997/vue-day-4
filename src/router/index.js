@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 import AddMovie from "../components/AddMovie";
+import AppLogin from "../components/AppLogin";
 import Movies from "../components/Movies";
 import { globalAuthGuard } from "../guards/auth.guard";
 
@@ -14,12 +15,17 @@ const routes = [
     component: AddMovie,
   },
   {
+    path: "/login",
+    component: AppLogin,
+  },
+  {
     path: "/",
-    component: AddMovie,
+    redirect: "/movies",
+    meta: { authRequired: true },
   },
   {
     path: "/movies",
-    name: "movies",
+
     component: Movies,
     meta: { authRequired: true },
   },

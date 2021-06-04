@@ -1,10 +1,13 @@
 export function globalAuthGuard(from, to, next) {
-  const $isAuthenticated = !!localStorage.getItem("token");
+  const isAuthenticated = !!localStorage.getItem("token");
+  console.log(isAuthenticated);
 
-  if (to.meta.authRequired && !$isAuthenticated) {
+  console.log(from.meta.authRequired);
+  console.log(from);
+  if (from.meta.authRequired && !isAuthenticated) {
     next("/login");
   }
-  if (to.meta.guestRequired && $isAuthenticated) {
+  if (from.meta.guestRequired && isAuthenticated) {
     next("/");
   }
 
