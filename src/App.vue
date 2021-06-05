@@ -1,11 +1,19 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/add">Add Movie</router-link>
-      <br />
-      <router-link to="/login">Login</router-link>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <router-link class="navbar-brand" to="/add" tag="button"
+          >Add Movie</router-link
+        >
+        <router-link class="navbar-brand" to="/login" tag="button"
+          >Login</router-link
+        >
+        <router-link class="navbar-brand" to="/logout" tag="button"
+          >Logout</router-link
+        >
+      </nav>
     </div>
-    <router-view />
+    <router-view></router-view>
   </div>
 </template>
 

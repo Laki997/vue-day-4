@@ -15,6 +15,12 @@ const routes = [
     component: AddMovie,
   },
   {
+    path: "/logout",
+    component: AppLogin,
+    redirect: "/login",
+    meta: { authRequired: true },
+  },
+  {
     path: "/login",
     component: AppLogin,
   },
