@@ -8,11 +8,13 @@
       <h2>Director: {{ movie.director }}</h2>
       <hr />
     </div>
+    <button @click="logout" class="btn btn-danger">Logout</button>
   </div>
 </template>
 
 <script>
 import { movieService } from "../services/movie.service";
+import { authService } from "../services/auth.service";
 export default {
   data() {
     return {
@@ -22,6 +24,12 @@ export default {
 
   async created() {
     this.movies = await movieService.getAll();
+  },
+  methods: {
+    logout() {
+      authService.logout();
+      this.$router.push("/login");
+    },
   },
 };
 </script>

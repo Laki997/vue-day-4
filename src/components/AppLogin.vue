@@ -11,7 +11,6 @@
           aria-describedby="emailHelp"
           placeholder="Enter email"
           v-model="user.email"
-          required
         />
       </div>
       <div class="form-group">
@@ -24,7 +23,6 @@
           aria-describedby="emailHelp"
           placeholder="Enter password"
           v-model="user.password"
-          required
         />
       </div>
 
@@ -34,21 +32,33 @@
 </template>
 
 <script>
-import { movieService } from "../services/movie.service";
+import { authService } from "../services/auth.service";
 export default {
   data() {
     return {
       user: {},
+      error: "",
     };
   },
 
   methods: {
     login() {
-      movieService.login(this.user).then((response) => {
-        console.log(response);
-        this.$router.push("/movies");
-      });
+      authService
+        .login(this.user)
+        .then((response) => {
+          console.log(response);
+          this.$router.push("/movies");
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+          this.error = error.response.data[1];
+          alert(this.error);
+        });
     },
+  },
+
+  wrongCredentials() {
+    alert(this.error);
   },
 };
 </script>
