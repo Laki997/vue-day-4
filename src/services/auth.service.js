@@ -13,6 +13,12 @@ class AuthService {
     return response;
   }
 
+  async register(user) {
+    const response = await baseService.post("/register", user);
+
+    return response;
+  }
+
   logout() {
     localStorage.removeItem("token");
     baseService.defaults.headers.common["Authorization"] = ``;

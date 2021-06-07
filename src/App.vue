@@ -5,17 +5,41 @@
         <router-link class="navbar-brand" to="/add" tag="button"
           >Add Movie</router-link
         >
-        <router-link class="navbar-brand" to="/login" tag="button"
-          >Login</router-link
-        >
-        <router-link class="navbar-brand" to="/logout" tag="button"
-          >Logout</router-link
-        >
+        <div v-if="isLoggedIn">
+          <router-link class="navbar-brand" to="/logout" tag="button"
+            >Logout</router-link
+          >
+        </div>
+        <div v-if="isNotLoggedIn">
+          <router-link class="navbar-brand" to="/login" tag="button"
+            >Login</router-link
+          >
+          <router-link class="navbar-brand" to="/register" tag="button"
+            >Register</router-link
+          >
+        </div>
       </nav>
     </div>
     <router-view></router-view>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {};
+  },
+
+  computed: {
+    isLoggedIn() {
+      return window.localStorage.getItem("token");
+    },
+    isNotLoggedIn() {
+      return !window.localStorage.getItem("token");
+    },
+  },
+};
+</script>
 
 <style>
 #app {

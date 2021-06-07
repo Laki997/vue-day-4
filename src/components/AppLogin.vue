@@ -50,7 +50,6 @@ export default {
           this.$router.push("/movies");
         })
         .catch((error) => {
-          console.log(error.response.data);
           this.error = error.response.data[1];
           alert(this.error);
         });
