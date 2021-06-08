@@ -15,10 +15,12 @@ const routes = [
     path: "/add",
     name: "add",
     component: AddMovie,
+    meta: { authRequired: true },
   },
   {
     path: "/movie/:id",
     component: SingleMovie,
+    meta: { authRequired: true },
   },
   {
     path: "/register",
@@ -48,6 +50,7 @@ const routes = [
   {
     path: "/about",
     name: "About",
+    meta: { authRequired: true },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
