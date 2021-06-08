@@ -4,6 +4,7 @@ import VueRouter from "vue-router";
 import AddMovie from "../components/AddMovie";
 import AppLogin from "../components/AppLogin";
 import Movies from "../components/Movies";
+import SingleMovie from "../components/SingleMovie";
 import AppRegister from "../components/AppRegister";
 import { globalAuthGuard } from "../guards/auth.guard";
 
@@ -14,6 +15,10 @@ const routes = [
     path: "/add",
     name: "add",
     component: AddMovie,
+  },
+  {
+    path: "/movie/:id",
+    component: SingleMovie,
   },
   {
     path: "/register",

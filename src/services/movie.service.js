@@ -12,6 +12,12 @@ class MovieService {
     console.log(response);
     return response.data;
   }
+
+  async getMovie(id) {
+    const response = await baseService.get(`/movie/${id}`);
+
+    return response;
+  }
 }
 
 export const movieService = new MovieService();

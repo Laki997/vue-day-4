@@ -6,6 +6,7 @@
     <div v-for="movie in movies" :key="movie.id">
       <h2>Title: {{ movie.title }}</h2>
       <h2>Director: {{ movie.director }}</h2>
+      <router-link :to="`/movie/${movie.id}`">Movie Info</router-link>
       <hr />
     </div>
     <button @click="logout" class="btn btn-danger">Logout</button>

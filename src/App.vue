@@ -2,19 +2,34 @@
   <div id="app">
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <router-link class="navbar-brand" to="/movies" tag="button"
+          >All</router-link
+        >
         <router-link class="navbar-brand" to="/add" tag="button"
           >Add Movie</router-link
         >
-        <div v-if="isLoggedIn">
-          <router-link class="navbar-brand" to="/logout" tag="button"
+        <div>
+          <router-link
+            v-if="isLoggedIn"
+            class="navbar-brand"
+            to="/logout"
+            tag="button"
             >Logout</router-link
           >
         </div>
-        <div v-if="isNotLoggedIn">
-          <router-link class="navbar-brand" to="/login" tag="button"
+        <div>
+          <router-link
+            v-if="isNotLoggedIn"
+            class="navbar-brand"
+            to="/login"
+            tag="button"
             >Login</router-link
           >
-          <router-link class="navbar-brand" to="/register" tag="button"
+          <router-link
+            v-if="isNotLoggedIn"
+            class="navbar-brand"
+            to="/register"
+            tag="button"
             >Register</router-link
           >
         </div>

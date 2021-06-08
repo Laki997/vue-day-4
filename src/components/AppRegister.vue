@@ -2,6 +2,7 @@
   <div>
     <form @submit.prevent="register">
       <div class="form-group">
+        <div v-test-func-dir></div>
         <label for="name">Name</label>
         <input
           type="text"
@@ -59,6 +60,7 @@
 </template>
 
 <script>
+import Vue from "vue";
 import { authService } from "../services/auth.service";
 export default {
   data() {
@@ -89,7 +91,31 @@ export default {
         });
     },
   },
+
+  // directives: {
+  //   focus: {
+  //     bind(el, binding) {
+  //       console.log((el, binding));
+  //     },
+  //     inserted(el) {
+  //       el.focus();
+  //     },
+  //     update(el, binding) {
+  //       console.log(el, binding);
+  //     },
+  //     componentUpdated(el, binding) {
+  //       console.log(el, binding);
+  //     },
+  //     unbind(el, binding) {
+  //       console.log(el, binding);
+  //     },
+  //   },
+  // },
 };
+
+Vue.directive("test-func-dir", function(el, binding) {
+  console.log("bind ili update ", el, binding);
+});
 </script>
 
 <style scoped></style>
