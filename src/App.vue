@@ -2,6 +2,7 @@
   <div id="app">
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <span>{{ someNumber }}</span>
         <router-link class="navbar-brand" to="/movies" tag="button"
           >All</router-link
         >
@@ -33,6 +34,7 @@
             >Register</router-link
           >
         </div>
+        <div v-if="isLoading">LOADING...</div>
       </nav>
     </div>
     <router-view></router-view>
@@ -51,6 +53,13 @@ export default {
     },
     isNotLoggedIn() {
       return !window.localStorage.getItem("token");
+    },
+
+    someNumber() {
+      return this.$store.getters.someNumber;
+    },
+    isLoading() {
+      return this.$store.getters.isLoading;
     },
   },
 };

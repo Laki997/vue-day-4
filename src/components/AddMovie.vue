@@ -26,7 +26,7 @@
         />
       </div>
 
-      <button type="submit" class="btn btn-primary">Login</button>
+      <button type="submit" class="btn btn-primary">Add Movie</button>
       <div v-for="error in errors" :key="error">
         {{ error }}
       </div>
@@ -35,29 +35,39 @@
 </template>
 
 <script>
-import { movieService } from "../services/movie.service";
+import { mapActions } from "vuex";
+// import { movieService } from "../services/movie.service";
 export default {
   data() {
     return {
-      movie: {},
+      movie: {
+        title: "",
+        director: "",
+      },
       errors: [],
     };
   },
 
   methods: {
-    add() {
-      // console.log(this.movie);
-      movieService
-        .add(this.movie)
-        .then((response) => {
-          console.log(response);
-          console.log("test");
-          this.$router.push("/movies");
-        })
-        .catch((errors) => {
-          console.log(errors);
-          this.errors = errors.response.data.errors;
-        });
+    ...mapActions(["createMovie"]),
+    // add() {
+    //   // console.log(this.movie);
+    //   movieService
+    //     .add(this.movie)
+    //     .then((response) => {
+    //       console.log(response);
+    //       console.log("test");
+    //       this.$router.push("/movies");
+    //     })
+    //     .catch((errors) => {
+    //       console.log(errors);
+    //       this.errors = errors.response.data.errors;
+    //     });
+    // },
+    async add() {
+      await this.createMovie(this.movie);
+      console.log(this.movie);
+      this.$router.push("/movies");
     },
   },
 };

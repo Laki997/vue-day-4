@@ -9,6 +9,8 @@ class AuthService {
     const response = await baseService.post("/login", user);
 
     this.setDefaultHeaders(response.data.token);
+    // console.log(response.data);
+    // console.log(response.data.user);
 
     return response;
   }
